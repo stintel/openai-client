@@ -88,6 +88,8 @@ pub struct ChatCompletionParameters {
     /// Up to 4 sequences where the API will stop generating further tokens.
     #[serde(skip_serializing_if = "Option::is_none")]
     pub stop: Option<StopToken>,
+    /// Send partial message deltas
+    pub stream: bool,
     /// What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random,
     /// while lower values like 0.2 will make it more focused and deterministic.
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -374,6 +376,7 @@ impl Default for ChatCompletionParameters {
             response_format: None,
             seed: None,
             stop: None,
+            stream: false,
             temperature: None,
             top_p: None,
             tools: None,
